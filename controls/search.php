@@ -38,9 +38,10 @@ $db1->limit($start_from, $limit)
 
 $db1->getResult();
 
+$sSearchSemRegistro = true;
 while ($row = $db1->fetch()) {
     $db1->rows($row);
-
+    $sSearchSemRegistro = false;
     $txtImagemPrincipal = unserialize($db1->row('imagens'))['principal'];
     if (empty($txtImagemPrincipal)) {
         if ($tpl->exists('pesquisarPostImagem')) $tpl->pesquisarPostImagem = '/themes/images/noimage.webp';
@@ -55,6 +56,10 @@ while ($row = $db1->fetch()) {
 }
 
 $db1->close();
+
+if ($sSearchSemRegistro) {
+    $tpl->block('BLOCK_PESQUISARSEMREGISTRO');
+}
 
 // Paginacao
 function pesquisarPaginationTotal(): array
