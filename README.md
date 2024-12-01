@@ -17,8 +17,6 @@ Você pode escolher as seguintes opções:
 
 Para atualizar o MiConteudo você pode baixar a versão mais recente disponível e atualizar manualmente o CMS ou se preferir se tornar um assinante e atualizar automaticamente com apenas um clique.
 
-Na atualização manual é necessário usar o composer na pasta classes para que as bibliotecas sejam instaladas.
-
 ### Atualização Automática
 
 Para atualizar automaticamente é necessário se tornar uma assinante Mestre da Info. Dessa forma você poderá verificar e atualizar com apenas um clique.
