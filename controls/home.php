@@ -9,6 +9,7 @@
 use MiConteudo\database\select;
 
 if (!defined('miconteudo')) {
+    exit;
 }
 
 $db1 = new select($dbBlogs1);
@@ -27,13 +28,13 @@ while ($row = $db1->fetch()) {
 
     if ($tpl->exists('homeDescricao')) {
         $pagina_descricao = stripslashes($db1->row('descricao'));
-        $tpl->homeDescricao = $pagina_descricao;
+        if (!empty($pagina_descricao)) $tpl->homeDescricao = $pagina_descricao;
     }
 }
 
 $db1->close();
 
-if ($tpl->exists('homeDescricao')) {
+if ($tpl->exists('homeDescricao') && isset($pagina_descricao)) {
     if (function_exists('miplugins')) {
         preg_match_all("/{(.*?)\}/", $tpl->homeDescricao, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {

@@ -49,34 +49,34 @@ if ($rt->getURLCompleta() == 'feed') {
     }
 
     if ($rt->getPrimeiraURL() == '') {
-        $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/home.html');
+        if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/home.html');
         include_once(dirname(__FILE__) . '/home.php');
     } elseif ($rt->getPrimeiraURL() == 's') {
-        $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pesquisar.html');
+        if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pesquisar.html');
         include_once(dirname(__FILE__) . '/search.php');
     } else {
         if (isPage() && empty($rt->getURL(1))) {
             if (file_exists(documentroot() . '/sites/' . $idsite . '/themes/pagina-' . CleanDB($rt->getPrimeiraURL()) . '.html')) {
-                $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina-' . CleanDB($rt->getPrimeiraURL()) . '.html');
+                if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina-' . CleanDB($rt->getPrimeiraURL()) . '.html');
             } else {
-                $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina.html');
+                if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina.html');
             }
             include_once(dirname(__FILE__) . '/page.php');
         } else {
             if (isPost()) {
-                $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/post.html');
+                if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/post.html');
                 include_once(dirname(__FILE__) . '/post.php');
             } else {
                 if ($rt->getPrimeiraURL() == 'blog' && empty($rt->getURL(1))) {
-                    $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/blog.html');
+                    if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/blog.html');
                     include_once(dirname(__FILE__) . '/blog.php');
                 } else {
                     if (existCategoriesSequences(getIDCategory($rt->getUltimaURL())) == $rt->getURLCompleta()) {
-                        $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/categoria.html');
+                        if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/categoria.html');
                         include_once(dirname(__FILE__) . '/categories.php');
                     } else {
                         //404
-                        $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina404.html');
+                        if ($tpl->exists('conteudo')) $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/pagina404.html');
                         include_once(dirname(__FILE__) . '/page404.php');
                     }
                 }
