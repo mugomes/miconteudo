@@ -151,36 +151,44 @@ function catPaginationTotal(): array
 }
 
 $catPaginationTotal = catPaginationTotal();
-$paginacaoPrev = $paginaAtual - 1;
-$paginacaoNext = $paginaAtual + 1;
-$paginacaoVoltarDesativado = '';
-$paginacaoVoltar = '';
-$paginacaoItemAtivado = '';
-$paginacaoItemLink = '';
-$paginacaoItem = '';
-$paginacaoAvancarDesativado = '';
-$paginacaoAvancar = '';
 
-// Paginacao
-if ($paginaAtual <= 1) {
-    if ($tpl->exists('paginacaoVoltarDesativado')) $tpl->paginacaoVoltarDesativado = ' disabled';
-    if ($tpl->exists('paginacaoVoltar')) $tpl->paginacaoVoltar = '#';
-} else {
-    if ($tpl->exists('paginacaoVoltarDesativado')) $tpl->paginacaoVoltarDesativado = '';
-    if ($tpl->exists('paginacaoVoltar')) $tpl->paginacaoVoltar = '?page=' . $paginacaoPrev;
-}
+if (!empty($catPaginationTotal['totalPages'])) {
+    $paginacaoPrev = $paginaAtual - 1;
+    $paginacaoNext = $paginaAtual + 1;
+    $paginacaoVoltarDesativado = '';
+    $paginacaoVoltar = '';
+    $paginacaoItemAtivado = '';
+    $paginacaoItemLink = '';
+    $paginacaoItem = '';
+    $paginacaoAvancarDesativado = '';
+    $paginacaoAvancar = '';
 
-if ($paginaAtual >= $catPaginationTotal['totalPages']) {
-    if ($tpl->exists('paginacaoAvancarDesativado')) $tpl->paginacaoAvancarDesativado = ' disabled';
-    if ($tpl->exists('paginacaoAvancar')) $tpl->paginacaoAvancar = '#';
-} else {
-    if ($tpl->exists('paginacaoAvancarDesativado')) $tpl->paginacaoAvancarDesativado = '';
-    if ($tpl->exists('paginacaoAvancar')) $tpl->paginacaoAvancar = '?page=' . $paginacaoNext;
-}
+    // Paginacao
+    if ($paginaAtual <= 1) {
+        if ($tpl->exists('paginacaoVoltarDesativado')) $tpl->paginacaoVoltarDesativado = ' disabled';
+        if ($tpl->exists('paginacaoVoltar')) $tpl->paginacaoVoltar = '#';
+    } else {
+        if ($tpl->exists('paginacaoVoltarDesativado')) $tpl->paginacaoVoltarDesativado = '';
+        if ($tpl->exists('paginacaoVoltar')) $tpl->paginacaoVoltar = '?page=' . $paginacaoPrev;
+    }
 
-for ($i = 1; $i <= $catPaginationTotal['totalPages']; $i++) {
-    if ($tpl->exists('paginacaoItemAtivado')) $tpl->paginacaoItemAtivado = ($paginaAtual == $i) ? ' active' : '';
-    if ($tpl->exists('paginacaoItemContador')) $tpl->paginacaoItemContador = $i;
+    if ($paginaAtual >= $catPaginationTotal['totalPages']) {
+        if ($tpl->exists('paginacaoAvancarDesativado')) $tpl->paginacaoAvancarDesativado = ' disabled';
+        if ($tpl->exists('paginacaoAvancar')) $tpl->paginacaoAvancar = '#';
+    } else {
+        if ($tpl->exists('paginacaoAvancarDesativado')) $tpl->paginacaoAvancarDesativado = '';
+        if ($tpl->exists('paginacaoAvancar')) $tpl->paginacaoAvancar = '?page=' . $paginacaoNext;
+    }
 
-    $tpl->block('BLOCK_CATPOSTPAGINACAO');
+    if ($catPaginationTotal['totalPages'] > 1) {
+        for ($i = 1; $i <= $catPaginationTotal['totalPages']; $i++) {
+            if ($tpl->exists('paginacaoItemAtivado')) $tpl->paginacaoItemAtivado = ($paginaAtual == $i) ? ' active' : '';
+            if ($tpl->exists('paginacaoItemContador')) $tpl->paginacaoItemContador = $i;
+
+            $tpl->block('BLOCK_CATPOSTPAGINACAO');
+        }
+
+
+        $tpl->block('BLOCK_PAGINACAO');
+    }
 }
