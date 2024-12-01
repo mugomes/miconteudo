@@ -18,7 +18,7 @@
             <a href="/adm/dashboard/sitemap/sitemap.php" class="nav-link">Gerar Sitemap</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="https://www.miconteudo.com.br/suporte/" class="nav-link">Suporte</a>
+            <a href="https://www.mestredainfo.com.br/contato/" class="nav-link">Suporte</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/adm/dashboard/close.php" class="nav-link">Sair</a>

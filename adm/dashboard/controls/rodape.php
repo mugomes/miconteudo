@@ -6,5 +6,5 @@
 // Site: https://www.mestredainfo.com.br
 ?>
 <footer class="main-footer">
-    <strong>Gratidão por escolher o <a href="https://www.miconteudo.com.br" target="_blank" rel="noopener">MiConteudo</a></strong>
+    <strong>Gratidão por escolher o <a href="https://www.mestredainfo.com.br/miconteudo/" target="_blank" rel="noopener">MiConteudo</a></strong>
 </footer>
