@@ -46,7 +46,7 @@ Quer se tornar um patrocinador desse projeto? Entre em contato para conversarmos
 Faça sua doação para o Mestre da Info, você pode doar através do Asaas, Stripe ou PIX.
 
 - PIX: pixmugomes@gmail.com
-- Asaas: https://www.asaas.com/c/72mxu6ilkis5rwxz
+- Asaas (Mensal): https://www.asaas.com/c/72mxu6ilkis5rwxz
 - Stripe: https://donate.stripe.com/14kdSugShfxs9by6oo
 
 ## Segurança
