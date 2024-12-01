@@ -1,0 +1,99 @@
+/* article, section {
+    padding-left: 30px;
+    padding-right:30px;
+} */
+
+.padding-30 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.nivel-1 {
+    margin-top: -50px;
+}
+
+/* Estilo para rótulo (label) */
+form label {
+    display: block;
+    /* Faz com que o rótulo ocupe toda a largura disponível */
+    margin-bottom: 10px;
+    /* Adiciona um espaço entre rótulos */
+    font-weight: bold;
+    /* Deixa o texto do rótulo em negrito */
+}
+
+/* Estilo para campo de entrada (input) */
+form input,
+form textarea,
+form select {
+    width: 100%;
+    /* Faz com que o campo de entrada ocupe toda a largura disponível */
+    padding: 10px;
+    /* Adiciona preenchimento interno ao campo de entrada */
+    margin-bottom: 15px;
+    /* Adiciona espaço entre campos de entrada */
+    border: 1px solid #ccc;
+    /* Adiciona uma borda ao campo de entrada */
+    border-radius: 5px;
+    /* Borda arredondada */
+    font-size: 16px;
+    /* Tamanho da fonte */
+}
+
+/* Estilo base para um botão */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    /* Borda arredondada */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    /* Transição suave de cores */
+}
+
+/* Estilo de foco (quando o botão está selecionado) */
+.btn:focus {
+    outline: none;
+    /* Remove a borda padrão de foco */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    color: #fff;
+    /* Cor do texto do botão */
+}
+
+/* Estilo de hover (quando o mouse passa por cima) */
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* Cor de fundo alterada no hover */
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Adiciona uma sombra de foco */
+}
+
+.btn-danger {
+    background-color: #990000;
+    /* Cor de fundo do botão */
+    color: #fff;
+    /* Cor do texto do botão */
+}
+
+/* Estilo de hover (quando o mouse passa por cima) */
+.btn-danger:hover {
+    background-color: #380000;
+    /* Cor de fundo alterada no hover */
+}
+
+.btn-danger:focus {
+    box-shadow: 0 0 5px rgba(87, 0, 0, 0.644);
+    /* Adiciona uma sombra de foco */
+}

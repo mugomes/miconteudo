@@ -1,0 +1,47 @@
+{topo}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <!-- BEGIN BLOCK_BREADCRUMB -->
+        <li class="breadcrumb-item">
+            <a href="/{breadcrumbActiveLink}">
+                {breadcrumbActiveTitulo}
+            </a>
+        </li>
+        <!-- END BLOCK_BREADCRUMB -->
+        <li class="breadcrumb-item active">{postTitulo}</li>
+    </ol>
+</nav>
+<main>
+    <article style="padding-left:27px;padding-right:27px;">
+        <h1>{postTitulo}</h1>
+        <div class="info" style="margin-top:7px;margin-bottom: 17px;font-size: 14px;">
+            <strong>Autor:</strong> {postAutor}&nbsp;|&nbsp;
+            <strong>Publicado em</strong> {postPublicado}
+            <!-- BEGIN POST_ALTERADO -->
+            &nbsp;|&nbsp;<strong>Atualizado em</strong> {postAlterado}
+            <!-- END POST_ALTERADO -->
+        </div>
+        <div class="postcontent">
+            {postDescricao}
+        </div>
+        <div class="posts-relacionados">
+            <!-- BEGIN BLOCK_POSTRELACIONADO -->
+                <div class="lista-postsrelacionados text-center">
+                    <a href="{postrelacionadoTitulo}">
+                        <img src="{postrelacionadoImagem}" alt="{postrelacionadoTitulo}" title="{postrelacionadoTitulo}" width="179"
+                            height="179" style="width:179px;height:179px;" />
+                    </a>
+                    <a href="{postrelacionadoLink}">
+                        <h3>{postrelacionadoTitulo}</h3>
+                    </a>
+                    {postrelacionadoResumo}
+                </div>
+            <!-- END BLOCK_POSTRELACIONADO -->
+        </div>
+    </article>
+    {barralateral2}
+</main>
+{rodape}

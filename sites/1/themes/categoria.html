@@ -1,0 +1,67 @@
+{topo}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <!-- BEGIN BLOCK_BREADCRUMB -->
+        <li class="breadcrumb-item{breadcrumbActive}">
+            <!-- BEGIN BLOCK_BREADCRUMBACTIVE -->
+            <a href="/{breadcrumbActiveLink}">
+                {breadcrumbActiveTitulo}
+            </a>
+            <!-- END BLOCK_BREADCRUMBACTIVE -->
+            <!-- BEGIN BLOCK_BREADCRUMBNOACTIVE -->
+            {breadcrumbNoActiveTitulo}
+            <!-- END BLOCK_BREADCRUMBNOACTIVE -->
+        </li>
+        <!-- END BLOCK_BREADCRUMB -->
+    </ol>
+</nav>
+<main>
+    <section style="padding-left:27px;padding-right:27px;">
+        <div class="grid-container">
+            <!-- BEGIN BLOCK_CATPOSTS -->
+            <div class="text-center">
+                <a href="{catPostLink}">
+                    <img src="{catPostImagem}" alt="{catPostTitulo}" title="{catPostTitulo}" width="179" height="179"
+                        style="width:179px;height:179px;" />
+                </a>
+                <a href="{catPostLink}">
+                    <h3>
+                        {catPostTitulo}
+                    </h3>
+                </a>
+                {catPostResumo}
+            </div>
+            <!-- END BLOCK_CATPOSTS -->
+        </div>
+    </section>
+
+    {barralateral2}
+</main>
+
+<!-- BEGIN BLOCK_PAGINACAO -->
+<div class="pagination" style="padding-left:27px;padding-right:27px;">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item{paginacaoVoltarDesativado}">
+                <a class="page-link" href="{paginacaoVoltar}">Voltar</a>
+            </li>
+
+            <!-- BEGIN BLOCK_CATPOSTPAGINACAO -->
+            <li class="page-item{paginacaoItemAtivado}">
+                <a class="page-link" href="?page={paginacaoItemContador}">
+                    {paginacaoItemContador}
+                </a>
+            </li>
+            <!-- END BLOCK_CATPOSTPAGINACAO -->
+
+            <li class="page-item{paginacaoAvancarDesativado}">
+                <a class="page-link" href="{paginacaoAvancar}">Avançar</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- END BLOCK_PAGINACAO -->
+{rodape}
