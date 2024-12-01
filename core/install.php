@@ -299,7 +299,7 @@ include_once(dirname(__FILE__, 2) . '/controls/functions.php');
                     mkdir(dirname(__FILE__, 2) . '/sites/1/files/', 0755, true);
                 }
 
-                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/plugin/')) {
+                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/plugins/')) {
                     mkdir(dirname(__FILE__, 2) . '/sites/1/plugins/', 0755, true);
                 }
 
