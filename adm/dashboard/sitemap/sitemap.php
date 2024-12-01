@@ -68,4 +68,8 @@ foreach ($sitemapCategorias as $sitemapUrl) {
 // write it
 $index->write();
 
+if (!file_exists(documentroot() . '/sites/' . $idsite . '/sitemap/sitemap-stylesheet.xsl')) {
+    copy(dirname(__FILE__) . '/template/sitemap-stylesheet.xsl', documentroot() . '/sites/' . $idsite . '/sitemap/sitemap-stylesheet.xsl');
+}
+
 redirect('/adm/dashboard/dashboard.php');
