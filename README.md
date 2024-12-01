@@ -8,11 +8,7 @@ MiConteudo já está bem completo, mas ainda está em desenvolvimento, faltando 
 
 Versão Atual: 0.9.0-Beta
 
-## Recursos Extras
-
-Precisa de um plugin ou um design novo? Entre em contato e solicite um orçamento.
-
-- Página de [Contato](https://www.mestredainfo.com.br/contato/)
+Recursos como comentários, posts relacionados e integração de plugins com barras laterais serão desenvolvidos em breve.
 
 ## Patrocinadores
 
