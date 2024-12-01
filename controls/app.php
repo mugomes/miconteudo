@@ -23,7 +23,7 @@ if (isset($sandbox)) {
 
         /* Habilita a exibição de erros */
         ini_set("display_errors", 1);
-    } 
+    }
 }
 
 $start = microtime(true);
@@ -43,6 +43,10 @@ if ($rt->getURLCompleta() == 'feed') {
     $tpl = new template(dirname(__FILE__) . '/layout/layout.html');
 
     include_once(dirname(__FILE__) . '/options.php');
+
+    if (file_exists(documentroot() . '/sites/' . $idsite . '/plugins/plugins.php')) {
+        include_once(documentroot() . '/sites/' . $idsite . '/plugins/plugins.php');
+    }
 
     if ($rt->getPrimeiraURL() == '') {
         $tpl->addFile('conteudo', documentroot() . '/sites/' . $idsite . '/themes/home.html');
@@ -120,9 +124,11 @@ if ($rt->getURLCompleta() == 'feed') {
         'disable_comments' => false,
     ]);
 
+    $sConteudoShow = $tpl->show();
+
     if (isset($sandbox)) {
-        echo $tpl->show();
+        echo $sConteudoShow;
     } else {
-        echo $minifier->minify($tpl->show());
+        echo $minifier->minify($sConteudoShow);
     }
 }

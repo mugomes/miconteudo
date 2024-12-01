@@ -26,8 +26,19 @@ while ($row = $db1->fetch()) {
     }
 
     if ($tpl->exists('homeDescricao')) {
-       if ($tpl->exists('homeDescricao')) $tpl->homeDescricao = stripslashes($db1->row('descricao'));
+        $pagina_descricao = stripslashes($db1->row('descricao'));
+        $tpl->homeDescricao = $pagina_descricao;
     }
 }
 
 $db1->close();
+
+if ($tpl->exists('homeDescricao')) {
+    if (function_exists('miplugins')) {
+        preg_match_all("/{(.*?)\}/", $tpl->homeDescricao, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $txtmatch = trim($match[1]);
+            $tpl->homeDescricao = str_replace("{" . $txtmatch . "}", miplugins($txtmatch), $tpl->homeDescricao);
+        }
+    }
+}

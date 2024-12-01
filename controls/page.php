@@ -47,13 +47,7 @@ while ($row = $db1->fetch()) {
     if ($tpl->exists('paginaDescricao')) {
         if ($tpl->exists('paginaDescricao')) {
             $pagina_descricao = stripslashes($db1->row('descricao'));
-
-            // preg_match_all("/{(.*?)\}/", $pagina_descricao, $matches, PREG_SET_ORDER);
-            // foreach ($matches as $match) {
-            //     $txtmatch = trim($match[1]);
-            //     $pagina_descricao = str_replace("{" . $txtmatch . "}", $txtmatch, $pagina_descricao);
-            // }
-
+   
             if (strpos($db1->row('descricao'), '<button') !== false) {
                 $tpl->paginaDescricao = str_replace('<button', '<input id="txtToken" name="txtToken" type="hidden" value="' . $_SESSION['tokenform'] . '"><input id="txtEnviar" name="txtEnviar" type="hidden" value=""><button', $pagina_descricao);
             } else {
@@ -67,3 +61,13 @@ while ($row = $db1->fetch()) {
 }
 
 $db1->close();
+
+if ($tpl->exists('paginaDescricao')) {
+    if (function_exists('miplugins')) {
+        preg_match_all("/{(.*?)\}/", $tpl->paginaDescricao, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $txtmatch = trim($match[1]);
+            $tpl->paginaDescricao = str_replace("{" . $txtmatch . "}", miplugins($txtmatch), $tpl->paginaDescricao);
+        }
+    }
+}

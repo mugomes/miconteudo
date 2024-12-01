@@ -114,7 +114,12 @@ for ($i = 0; $i < $breadcrumbCount; $i++) {
     $tpl->block('BLOCK_BREADCRUMB');
 }
 
-/**
- *          $postsRelacionados = getPostsRelacionados($rowHome['link'], $rowHome['palavraschave']);
- * foreach ($postsRelacionados as $row) {
- */
+if ($tpl->exists('postDescricao')) {
+    if (function_exists('miplugins')) {
+        preg_match_all("/{(.*?)\}/", $tpl->postDescricao, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $txtmatch = trim($match[1]);
+            $tpl->postDescricao = str_replace("{" . $txtmatch . "}", miplugins($txtmatch), $tpl->postDescricao);
+        }
+    }
+}  
