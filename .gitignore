@@ -1,0 +1,10 @@
+# Folders and Files
+/logs/
+/sites/
+/classes/vendor/
+
+# Files
+/core/config.php
+/core/install1.php
+/adm/plugins/formbuilder
+/classes/composer.lock

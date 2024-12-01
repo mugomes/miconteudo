@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{titulo}</title>
+
+    <!-- BEGIN BLOCK_HEADDESCRIPTION -->
+    <meta name="description" content="{descricaocurta}" />
+    <!-- END BLOCK_HEADDESCRIPTION -->
+
+    <!-- BEGIN BLOCK_HEADKEYWORDS -->
+    <meta name="keywords" content="{palavraschave}" />
+    <!-- END BLOCK_HEADKEYWORDS -->
+
+    <meta name="og:type" content="website" />
+    <meta name="og:title" content="{titulo}" />
+    <!-- BEGIN BLOCK_HEADOGDESCRIPTION -->
+    <meta name="og:description" content="{descricaocurta}" />
+    <!-- END BLOCK_HEADOGDESCRIPTION -->
+    <meta name="og:url" content="{siteURL}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{titulo}">
+
+    <!-- BEGIN BLOCK_HEADTWITTERDESCRIPTION -->
+    <meta name="twitter:description" content="{descricaocurta}">
+    <!-- END BLOCK_HEADTWITTERDESCRIPTION -->
+ 
+    <meta name="og:image" content="{imagemprincipal}" />
+    <meta name="twitter:image:src" content="{imagemprincipal}" />
+
+    <meta name="generator" content="MiConteudo">
+
+    <link rel="canonical" href="{siteURL}" />
+
+    <link rel="alternate" type="application/rss+xml" title="Feed de {siteTitulo}" href="{siteFeed}" />
+
+    <link rel="stylesheet" href="/themes/css/normalize{sminify}.css" media="screen">
+    <link rel="stylesheet" href="/themes/css/style{sminify}.css" media="screen">
+    <link rel="stylesheet" href="/themes/css/style.responsive{sminify}.css" media="screen">
+    <link rel="stylesheet" href="/themes/css/prism{sminify}.css" media="screen">
+    <link rel="stylesheet" href="/sites/{idsite}/themes/css/style{sminify}.css" media="screen">
+    <link rel="stylesheet" href="/sites/{idsite}/themes/css/style.responsive{sminify}.css" media="screen">
+
+    <!-- BEGIN BLOCK_HEADESTILOS -->
+    <style>
+        {estilos}
+    </style>
+    <!-- END BLOCK_HEADESTILOS -->
+
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-336x336.png" sizes="336x336">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-288x288.png" sizes="288x288">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-240x240.png" sizes="240x240">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-144x144.png" sizes="144x144">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/sites/{idsite}/themes/images/favicon-48x48.png" sizes="48x48">
+
+    <!-- BEGIN BLOCK_HEADGOOGLEANALYTICS -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={googleanalytics}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', '{googleanalytics}');
+    </script>
+    <!-- END BLOCK_HEADGOOGLEANALYTICS -->
+
+    {outrasmetatags1}
+</head>
+
+<body>
+    {conteudo}
+<script src="/themes/js/script{sminify}.js"></script>
+<script src="/themes/js/prism{sminify}.js"></script>
+
+{outrasmetatags2}
+
+<!-- Total time cached query: {microtime} -->
+</body>
+
+</html>

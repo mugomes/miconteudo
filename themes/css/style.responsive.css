@@ -1,0 +1,138 @@
+/*
+Copyright (C) 2004-2024 Murilo Gomes Julio
+SPDX-License-Identifier: GPL-2.0-only
+
+Mestre da Info
+Site: https://www.mestredainfo.com.br
+*/
+
+@media screen and (max-width: 850px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    header nav {
+        position: absolute;
+        width: 100%;
+        top: 90px;
+        left: 0;
+        display: block;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        z-index: 99999999999;
+    }
+
+    header nav ul {
+        display: block;
+    }
+
+    header nav ul li {
+        width: 100%;
+        padding-top: 7px;
+    }
+
+    .menuToggle {
+        position: relative;
+        width: 40px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menuToggle::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: #FFFFFF;
+        transform: translateY(-12px);
+        box-shadow: 0 12px #FFFFFF;
+    }
+
+    .menuToggle::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: #FFFFFF;
+        transform: translateY(12px);
+    }
+
+    header.active .menuToggle::before {
+        transform: rotate(45deg);
+        box-shadow: 0 0 #FFFFFF;
+    }
+
+    header.active .menuToggle::after {
+        transform: rotate(315deg);
+    }
+
+    /* Menu Topo */
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+
+    header nav ul li a {
+        padding: 15px;
+    }
+
+    .submenu {
+        position: static;
+        display: none;
+        width: 100%;
+    }
+
+    /* Exibe submenu quando o item for clicado */
+    header nav ul li.active .submenu {
+        display: block;
+    }
+
+    header nav ul.active {
+        display: block;
+    }
+
+    /* end Menu Topo */
+
+    main {
+        display: block;
+        margin-top: 17px;
+    }
+
+    main .sidebar-left {
+        padding-left: 7px;
+        padding-right: 7px;
+        width: 100%;
+    }
+
+    main article,
+    main section {
+        text-align: left;
+        margin-top: 7px;
+        width: 100%;
+        /* padding-left: 7px;
+        padding-right: 7px; */
+    }
+
+    main .sidebar-right {
+        margin-top: 27px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    footer .wd-info {
+        text-align: center;
+    }
+
+    .grid-container {
+        display: block;
+        width: 100%;
+    }
+}
