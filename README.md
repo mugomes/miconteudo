@@ -23,11 +23,13 @@ Na atualização manual é necessário usar o composer na pasta classes para que
 
 Para atualizar automaticamente é necessário se tornar uma assinante Mestre da Info. Dessa forma você poderá verificar e atualizar com apenas um clique.
 
-- Página de [Assinantes](https://www.mestredainfo.com.br/assinantes/)
+- Em breve
 
 ## Suporte Técnico
 
 Precisa tirar dúvidas? Para isso é necessário se tornar um assinante Mestre da Info.
+
+- Em breve
 
 ## Recursos Extras
 
