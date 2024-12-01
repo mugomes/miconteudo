@@ -4,30 +4,9 @@ MiConteudo é um CMS inovador desenvolvido para criar e gerenciar sites instituc
 
 ## Em desenvolvimento
 
-MiConteúdo já está bem completo, mas ainda está em desenvolvimento, faltando alguns recursos e correções.
+MiConteudo já está bem completo, mas ainda está em desenvolvimento, faltando alguns recursos e correções.
 
 Versão Atual: 0.9.0-Beta
-
-## Atualizações
-
-Você pode escolher as seguintes opções:
-
-- Atualização Manual
-- Atualização Automática
-
-Para atualizar o MiConteudo você pode baixar a versão mais recente disponível e atualizar manualmente o CMS ou se preferir se tornar um assinante e atualizar automaticamente com apenas um clique.
-
-### Atualização Automática
-
-Para atualizar automaticamente é necessário se tornar um assinante Mestre da Info. Dessa forma você poderá verificar e atualizar com apenas um clique.
-
-- Em breve
-
-## Suporte Técnico
-
-Precisa tirar dúvidas? Para isso é necessário se tornar um assinante Mestre da Info.
-
-- Em breve
 
 ## Recursos Extras
 
