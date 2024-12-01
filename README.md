@@ -49,10 +49,6 @@ Faça sua doação para o Mestre da Info, você pode doar através do Asaas, Str
 - Asaas (Mensal): https://www.asaas.com/c/72mxu6ilkis5rwxz
 - Stripe: https://donate.stripe.com/14kdSugShfxs9by6oo
 
-## Segurança
-
-Encontrou alguma falha de segurança? Revise nossa [política de segurança](https://www.mestredainfo.com.br/politica-de-seguranca/).
-
 ## Para acompanhar as novidades:
 
 - Siga-nos no Instagram [Mestre da Info](https://www.instagram.com/mestredainfo/)
