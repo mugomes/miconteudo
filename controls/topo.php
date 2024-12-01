@@ -23,7 +23,13 @@ function menutopo($parent, $level = 1)
     while ($row = $db1->fetch()) {
         $db1->rows($row);
         $txt .= '<li>';
-        $txt .= '<a href="' . $db1->row('link') . '">';
+        $txt .= '<a href="' . $db1->row('link') . '"';
+        
+        if ($db1->row('ativarnovajanela') == 1) {
+            $txt .= ' target="_blank" rel="noopener nofollow"';
+        }
+
+        $txt .= '>';
         $txt .= $db1->row('nome');
         $txt .= '</a>';
 
