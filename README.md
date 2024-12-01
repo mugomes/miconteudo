@@ -19,7 +19,7 @@ Para atualizar o MiConteudo você pode baixar a versão mais recente disponível
 
 ### Atualização Automática
 
-Para atualizar automaticamente é necessário se tornar uma assinante Mestre da Info. Dessa forma você poderá verificar e atualizar com apenas um clique.
+Para atualizar automaticamente é necessário se tornar um assinante Mestre da Info. Dessa forma você poderá verificar e atualizar com apenas um clique.
 
 - Em breve
 
