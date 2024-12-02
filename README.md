@@ -10,6 +10,14 @@ Versão Atual: 0.9.0-Beta
 
 Recursos como comentários, posts relacionados e integração de plugins com barras laterais serão desenvolvidos em breve.
 
+## Requerimento
+
+- Sistema: Linux
+- Servidor: Apache
+- PHP 8.2 ou superior
+- MySQL/MariaDB
+- Extensões: php-mysql, php-mbstring, php-zip, php-xml
+
 ## Patrocinadores
 
 Quer se tornar um patrocinador desse projeto? Entre em contato para conversarmos.
