@@ -5,6 +5,7 @@
 /sites/1/themes/images/topo1.jpg
 
 # Files
+/changelog
 /core/config.php
 /core/install1.php
 /adm/plugins/formbuilder
