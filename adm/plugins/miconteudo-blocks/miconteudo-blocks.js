@@ -5,12 +5,22 @@
 // Site: https://www.mestredainfo.com.br
 
 function miConteudoBlocos(editor) {
+    editor.Components.addType('div', {
+        model: {
+            defaults: {
+                tagName: 'div',
+                draggable: true
+            }
+        },
+        isComponent: (el) => el.tagName === 'DIV',
+    });
+
     // Blocos
     editor.Blocks.add('column-1', {
         label: 'Coluna 1',
         content: `
                 <div style="display: inline-block; width: 100%; min-height: 30px; position: relative;">
-                    <div></div>
+                
                 </div>
             `,
         category: 'Blocos',
