@@ -8,7 +8,7 @@
 
 use MiConteudo\database\select;
 
-function menutopo($parent, $level = 1)
+function menutopo(int $parent, int $level = 1): string
 {
     global $dbBlogs1, $idsite;
 
@@ -47,7 +47,7 @@ function menutopo($parent, $level = 1)
     return $txt;
 }
 
-function menulateral($parent, $level = 1)
+function menulateral(int $parent, int $level = 1): string
 {
     global $dbBlogs1, $idsite;
 
@@ -80,7 +80,7 @@ function menulateral($parent, $level = 1)
     return $txt;
 }
 
-function categorias($parent, $level = 1)
+function categorias(int $parent, int $level = 1):string
 {
     global $dbBlogs1, $idsite;
 
