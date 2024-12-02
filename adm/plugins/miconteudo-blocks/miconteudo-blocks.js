@@ -8,16 +8,11 @@ function miConteudoBlocos(editor) {
     // Blocos
     editor.Blocks.add('column-1', {
         label: 'Coluna 1',
-        content: {
-            type: 'div',
-            content: '',
-            style: {
-                width: '100%',
-                'min-height': '30px',
-                display: 'inline-block',
-                position: 'relative'
-            }
-        },
+        content: `
+                <div style="display: inline-block; width: 100%; min-height: 30px; position: relative;">
+                    <div></div>
+                </div>
+            `,
         category: 'Blocos',
     });
 
