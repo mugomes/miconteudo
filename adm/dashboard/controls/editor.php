@@ -8,6 +8,11 @@
 if (!defined('miconteudo')) {
     exit;
 }
+
+$sMinify = '';
+if (!isset($sandbox)) {
+    $sMinify = '.min';
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -77,15 +82,15 @@ if (!defined('miconteudo')) {
                 canvas: {
                     styles: [
                         // "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-                        "/themes/css/normalize.css",
-                        "/themes/css/style.css",
-                        "/themes/css/style.responsive.css",
-                        "/sites/<?php echo $idsite; ?>/themes/css/style.css",
-                        "/sites/<?php echo $idsite; ?>/themes/css/style.responsive.css",
-                        "/themes/css/prism.css"
+                        "/themes/css/normalize<?php echo $sMinify; ?>.css",
+                        "/themes/css/style<?php echo $sMinify; ?>.css",
+                        "/themes/css/style.responsive<?php echo $sMinify; ?>.css",
+                        "/sites/<?php echo $idsite; ?>/themes/css/style<?php echo $sMinify; ?>.css",
+                        "/sites/<?php echo $idsite; ?>/themes/css/style.responsive<?php echo $sMinify; ?>.css",
+                        "/themes/css/prism<?php echo $sMinify; ?>.css"
                     ],
                     scripts: [
-                        "/themes/js/prism.js"
+                        "/themes/js/prism<?php echo $sMinify; ?>.js"
                         // "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                     ]
                 },
