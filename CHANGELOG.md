@@ -1,6 +1,9 @@
 # MiConteudo ChangeLog
 
-## Version v0.9.0-Beta (dezembro 01, 2024)
+## Version v0.9.0-Beta
+
+### 01/12/2024
+
 - Update file
 - Atualizado o link
 - Corrigido: após a instalação a página inicial exibia com erro do varname homeDescricao
