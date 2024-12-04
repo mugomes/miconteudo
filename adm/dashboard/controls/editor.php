@@ -45,6 +45,7 @@ if (!isset($sandbox)) {
     <script src="/adm/plugins/grapick/dist/grapick.min.js"></script>
     <script src="/adm/plugins/grapesjs-templates/dist/index.js"></script>
     <script src="/adm/plugins/grapesjs-plugin-forms/dist/index.js"></script>
+    <script src="/adm/plugins/grapesjs-tui-image-editor/dist/index.js"></script>
     <script src="/adm/plugins/tinymce/tinymce.min.js"></script>
     <script src="/adm/plugins/miconteudo-editor/miconteudo-editor.js"></script>
     <script src="/adm/plugins/miconteudo-filemanager/miconteudo-filemanager.js"></script>
@@ -69,7 +70,7 @@ if (!isset($sandbox)) {
                 height: "100%",
                 fromElement: true,
                 storageManager: false,
-                plugins: ['miconteudo-editor', 'miconteudo-filemanager', miConteudoBlocos, 'grapesjs-rulers', 'grapesjs-component-code-editor', 'grapesjs-plugin-forms'],
+                plugins: ['miconteudo-editor', 'miconteudo-filemanager', miConteudoBlocos, 'grapesjs-rulers', 'grapesjs-component-code-editor', 'grapesjs-plugin-forms', 'grapesjs-tui-image-editor'],
                 pluginsOpts: {
                     // 'grapesjs-tailwind': {}
                 },
