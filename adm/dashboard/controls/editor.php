@@ -39,9 +39,7 @@ if (!isset($sandbox)) {
 <body>
     <div id="gjs"></div>
 
-    <script src="/adm/plugins/grapesjs/grapes.min.js"></script>
-    <script src="/adm/plugins/grapesjs-blocks-basic/dist/index.js"></script>
-    <script src="/adm/plugins/grapesjs-blocks-flexbox/dist/index.js"></script>
+    <script src="/adm/plugins/grapesjs/grapes.min.js"></script>   
     <script src="/adm/plugins/grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.js"></script>
     <script src="/adm/plugins/grapesjs-component-countdown/dist/index.js"></script>
     <script src="/adm/plugins/grapesjs-rulers/dist/grapesjs-rulers.min.js"></script>
