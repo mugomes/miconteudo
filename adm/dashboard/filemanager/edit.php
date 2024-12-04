@@ -37,6 +37,34 @@ if (isset($sandbox)) {
 
 include_once(dirname(__FILE__, 2) . '/controls/checkadm.php');
 
+function convertToWebP(string $source, string $destination, int $quality = 80)
+{
+    // Verifica o tipo de imagem
+    $info = getimagesize($source);
+    $mime = $info['mime'];
+
+    if ($mime == 'image/jpeg') {
+        $image = imagecreatefromjpeg($source);
+    } elseif ($mime == 'image/png') {
+        $image = imagecreatefrompng($source);
+        // Define fundo transparente para PNG
+        imagepalettetotruecolor($image);
+        imagealphablending($image, true);
+        imagesavealpha($image, true);
+    }
+
+    // Cria a imagem WebP
+    if (isset($image)) {
+        imagewebp($image, $destination, $quality);
+    }
+
+    imagedestroy($image);
+
+    if (file_exists($source)) {
+        unlink($source);
+    }
+}
+
 if (requestPOST()) {
     if (!empty($_FILES)) {
         if (is_array($_FILES)) {
@@ -63,6 +91,24 @@ if (requestPOST()) {
                             $sNameFile = pathinfo($sTargetFile, PATHINFO_BASENAME);
 
                             move_uploaded_file($row['tmp_name'][$i], $sTargetFile);
+
+                            if (strposa($sTipoFile1, array('image/png', 'image/jpeg'))) {
+                                $sFileNewWebP = $sTargetFile;
+
+                                $sNameFile = rtrim($sNameFile, '.jpg');
+                                $sNameFile = rtrim($sNameFile, '.jpeg');
+                                $sNameFile = rtrim($sNameFile, '.png');
+                                $sNameFile = $sNameFile . '.webp';
+
+                                $sFileNewWebP = rtrim($sFileNewWebP, '.jpg');
+                                $sFileNewWebP = rtrim($sFileNewWebP, '.jpeg');
+                                $sFileNewWebP = rtrim($sFileNewWebP, '.png');
+                                $sFileNewWebP = $sFileNewWebP . '.webp';
+
+                                convertToWebP($sTargetFile, $sFileNewWebP);
+
+                                $sTargetFile = $sFileNewWebP;
+                            }
 
                             $txtDataPublicado = date('Y-m-d H:i:s');
 
