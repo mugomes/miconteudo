@@ -6,6 +6,7 @@
 
 # Files
 /changelog.sh
+/changelog.txt
 /core/config.php
 /core/install1.php
 /adm/plugins/formbuilder
