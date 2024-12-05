@@ -72,7 +72,9 @@ include_once(dirname(__FILE__) . '/controls/checkadm.php');
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body table-responsive p-12">
-                                    Versão: 0.9.0-Beta
+                                    <?php
+                                    // Exibe aviso de novas atualizações
+                                    ?>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
