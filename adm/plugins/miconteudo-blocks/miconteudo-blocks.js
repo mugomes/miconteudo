@@ -186,7 +186,7 @@ function miConteudoBlocos(editor) {
                 }
             </style>
         `,
-        category: 'Outros Componentes',
+        category: 'Componentes',
     });
 
 
