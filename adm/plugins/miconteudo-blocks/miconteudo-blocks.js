@@ -188,6 +188,4 @@ function miConteudoBlocos(editor) {
         `,
         category: 'Componentes',
     });
-
-
 }
