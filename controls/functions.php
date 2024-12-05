@@ -336,3 +336,9 @@ function descript(string $valor, string $chave): string
     $encryptedData = substr($data, $ivLength);
     return openssl_decrypt($encryptedData, $cipher, $chave, OPENSSL_RAW_DATA, $iv);
 }
+
+function idioma(): string {
+    $sLang = getenv('HTTP_ACCEPT_LANGUAGE');
+    $sCode = substr($sLang, 0, 5);
+    return $sCode;
+}
