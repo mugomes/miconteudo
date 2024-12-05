@@ -12,7 +12,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/adm/dashboard/update/verificar.php" class="nav-link">Atualizações</a>
+            <a href="/adm/dashboard/checkupdate/verificar.php" class="nav-link">Atualizações</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/adm/dashboard/sitemap/sitemap.php" class="nav-link">Gerar Sitemap</a>
