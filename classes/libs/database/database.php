@@ -47,6 +47,11 @@ class database
         }
     }
 
+    public function multiQuery(string $sql): bool
+    {
+        return mysqli_multi_query($this->sConecta, $sql);
+    }
+
     public function table(string $nome)
     {
         $this->sTabelas[] = $this->sPrefix . $nome;
