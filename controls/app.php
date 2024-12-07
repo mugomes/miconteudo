@@ -15,6 +15,12 @@ if (!defined('miconteudo')) {
 
 include_once(dirname(__FILE__) . '/functions.php');
 include_once(documentroot() . '/classes/vendor/autoload.php');
+
+if (file_exists(documentroot()  . '/core/install.php')) {
+    include_once(documentroot() . '/core/install.php');
+    exit;
+}
+
 include_once(documentroot() . '/core/config.php');
 
 if (isset($sandbox)) {
