@@ -178,13 +178,16 @@ class table extends database
     public function columnExists(string $coluna): bool
     {
         try {
-            $sql = "SELECT COUNT(*) FROM information_schema.columns WHERE table_name = '" . $this->getTable() . "' AND column_name = '$coluna'";
+            $txt = false;
+            $sql = "SELECT COUNT(*) As count1 FROM information_schema.columns WHERE table_name = '" . $this->getTable() . "' AND column_name = '$coluna'";
             if ($this->sResult = mysqli_query($this->sConecta, $sql)) {
-                $this->sFechaResult = true;
-                return true;
-            } else {
-                return false;
+                $row = mysqli_fetch_array($this->sResult);
+                if ($row['count1'] > 0) {
+                    $txt = true;
+                }
+                mysqli_free_result($this->sResult);
             }
+            return $txt;
         } catch (\mysqli_sql_exception $ex) {
             $this->log($ex->__toString());
         }
