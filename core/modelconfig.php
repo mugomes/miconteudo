@@ -16,7 +16,7 @@ $dbBlogs1 = [
     'username' => '{miusuario}',
     'password' =>  '{misenha}',
     'database' => '{midatabase}',
-    'prefix' => '{miprefixo}_'
+    'prefix' => '{miprefixo}'
 ];
 
 function getIDSite(): array
