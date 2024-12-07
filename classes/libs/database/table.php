@@ -35,7 +35,8 @@ class table extends database
         $this->ctAfter = '';
     }
 
-    private function cleanAll() {
+    private function cleanAll()
+    {
         $this->clean();
         $this->sCreateColumns = [];
         $this->sTabelas = [];
@@ -139,7 +140,7 @@ class table extends database
             $txt = sprintf('CREATE TABLE IF NOT EXISTS %s (%s) ENGINE=MyISAM DEFAULT CHARSET=%s COLLATE=%s_general_ci;', $this->getTable(), $colunas, $this->sCharset, $this->sCharset);
 
             mysqli_query($this->sConecta, $txt);
-            
+
             $this->sFechaResult = false;
             $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
@@ -174,11 +175,18 @@ class table extends database
         }
     }
 
-    public function tableExists(string $nome): bool {
-
-    }
-
-    public function columnExists(string $nome): bool {
-        
+    public function columnExists(string $coluna): bool
+    {
+        try {
+            $sql = "SELECT COUNT(*) FROM information_schema.columns WHERE table_name = '" . $this->getTable() . "' AND column_name = '$coluna'";
+            if ($this->sResult = mysqli_query($this->sConecta, $sql)) {
+                $this->sFechaResult = true;
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\mysqli_sql_exception $ex) {
+            $this->log($ex->__toString());
+        }
     }
 }
