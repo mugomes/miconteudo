@@ -173,7 +173,7 @@ include_once(documentroot() . '/controls/functions.php');
                 ];
 
                 // DB: Sites
-                $db1 = new table($dbBlogs1);
+                $db1 = new table($dbBlogs1, true);
                 $db1->table('sites')
                     ->int()->autoIncrement()->primaryKey()->add('id')
                     ->longText()->add('link');
@@ -408,7 +408,7 @@ include_once(documentroot() . '/controls/functions.php');
                     ->add('dataalterado')->prepared(date('Y-m-d H:i:s'))
                     ->insert();
                 $db4->close();
-
+                
                 if (!file_exists(dirname(__FILE__, 2) . '/sites/1/files/')) {
                     mkdir(dirname(__FILE__, 2) . '/sites/1/files/', 0755, true);
                 }
