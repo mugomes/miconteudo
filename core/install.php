@@ -190,6 +190,7 @@ use MiConteudo\database\table;
                     ->longText()->add('link')
                     ->int()->add('idcategoria')
                     ->int()->add('ordem')
+                    ->varcharTamanho(5)->null()->add('idioma')
                     ->varcharTamanho(19)->add('datapublicado')
                     ->varcharTamanho(19)->null()->add('dataalterado')
                     ->create();
@@ -215,6 +216,7 @@ use MiConteudo\database\table;
                     ->int()->defaultValue(0)->add('ordem')
                     ->longText()->null()->add('classe')
                     ->longText()->null()->add('estilo')
+                    ->varcharTamanho(5)->null()->add('idioma')
                     ->create();
 
                 // DB: Options
@@ -229,6 +231,11 @@ use MiConteudo\database\table;
                     ->longText()->null()->add('outrasmetatags1')
                     ->longText()->null()->add('outrasmetatags2')
                     ->longText()->null()->add('configemail')
+                    ->varcharTamanho(5)->null()->add('idiomapadrao')
+                    ->varcharTamanho(5)->null()->add('idioma')
+                    ->varcharTamanho(15)->null()->add('versao')
+                    ->varcharTamanho(19)->null()->add('dataatualizado')
+                    ->varcharTamanho(19)->null()->add('dataverificado')
                     ->varcharTamanho(19)->add('datapublicado')
                     ->varcharTamanho(19)->null()->add('dataalterado')
                     ->create();
@@ -248,6 +255,7 @@ use MiConteudo\database\table;
                     ->longText()->null()->add('outrasmetatags2')
                     ->longText()->add('link')
                     ->int()->defaultValue(2)->add('rascunho')
+                    ->varcharTamanho(5)->null()->add('idioma')
                     ->varcharTamanho(19)->add('datapublicado')
                     ->varcharTamanho(19)->null()->add('dataalterado')
                     ->create();
@@ -270,6 +278,7 @@ use MiConteudo\database\table;
                     ->longText()->null()->add('outrasmetatags2')
                     ->longText()->add('link')
                     ->int()->defaultValue(2)->add('rascunho')
+                    ->varcharTamanho(5)->null()->add('idioma')
                     ->varcharTamanho(19)->add('datapublicado')
                     ->varcharTamanho(19)->null()->add('dataalterado')
                     ->create();
@@ -281,6 +290,7 @@ use MiConteudo\database\table;
                     ->longText()->null()->add('projeto')
                     ->longText()->null()->add('descricao')
                     ->longText()->null()->add('estilos')
+                    ->varcharTamanho(5)->null()->add('idioma')
                     ->varcharTamanho(19)->add('dataalterado')
                     ->create();
 
