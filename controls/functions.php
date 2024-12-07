@@ -337,8 +337,65 @@ function descript(string $valor, string $chave): string
     return openssl_decrypt($encryptedData, $cipher, $chave, OPENSSL_RAW_DATA, $iv);
 }
 
-function idioma(): string {
+function idioma(): string
+{
     $sLang = getenv('HTTP_ACCEPT_LANGUAGE');
     $sCode = substr($sLang, 0, 5);
     return $sCode;
+}
+
+function gerarPrefixo(): string
+{
+    $retorno = '';
+    $caracteres = 'abcdefghijklmnopqrstuvwxyz';
+
+    $len = strlen($caracteres);
+
+    for ($n = 1; $n <= 5; $n++) {
+        $rand = mt_rand(1, $len);
+        $retorno .= $caracteres[$rand - 1];
+    }
+
+    return $retorno;
+}
+
+function criarPasta(string $nome): bool
+{
+    return (file_exists($nome)) ? true : mkdir($nome, 0755, true);
+}
+
+function lerArquivo(string $nome): string|false
+{
+    return (file_exists($nome)) ? file_get_contents($nome) : false;
+}
+
+function criarArquivo(string $nome, string $dados, bool $substituir = false)
+{
+    if ($substituir) {
+        file_put_contents($nome, $dados);
+    } else {
+        file_put_contents($nome, $dados, FILE_APPEND);
+    }
+}
+
+function excluirArquivo(string $nome)
+{
+    unlink($nome);
+}
+
+function excluirPasta(string $diretorio): bool
+{
+    $arquivos = scandir($diretorio);
+
+    foreach ($arquivos as $arquivo) {
+        if ($arquivo !== '.' && $arquivo !== '..') {
+            if (is_dir($diretorio . '/' . $arquivo)) {
+                excluirPasta($diretorio . '/' . $arquivo) . '/';
+            } else {
+                unlink($diretorio . '/' . $arquivo);
+            }
+        }
+    }
+
+    return rmdir($diretorio . '/');
 }
