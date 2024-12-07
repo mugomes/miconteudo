@@ -11,8 +11,6 @@ if (!defined('miconteudo')) {
 
 use MiConteudo\database\insert;
 use MiConteudo\database\table;
-
-include_once(documentroot() . '/controls/functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -178,7 +176,7 @@ include_once(documentroot() . '/controls/functions.php');
                     ->int()->autoIncrement()->primaryKey()->add('id')
                     ->longText()->add('link');
                 $db1->create();
-                        
+
                 // DB: Categorias
                 $db1->table('categorias')
                     ->int()->autoIncrement()->primaryKey()->add('id')
@@ -310,31 +308,10 @@ include_once(documentroot() . '/controls/functions.php');
                 $modelConfig = str_replace('{midatabase}', $dbBlogs1['database'], $modelConfig);
                 $modelConfig = str_replace('{miprefixo}', $dbBlogs1['prefix'], $modelConfig);
 
-                file_put_contents(dirname(__FILE__) . '/config.php', $modelConfig);
-                unlink(dirname(__FILE__) . '/modelconfig.php');
-                $redirect = true;
+                criarArquivo(dirname(__FILE__) . '/config.php', $modelConfig, true);
+                excluirArquivo(dirname(__FILE__) . '/modelconfig.php');
 
-                if (isset($redirect)) {
-                    if ($redirect) {
-
-                        redirect('/', ['page' => 'info']);
-                    }
-                }
-            }
-
-            function gerarPrefixo(): string
-            {
-                $retorno = '';
-                $caracteres = 'abcdefghijklmnopqrstuvwxyz';
-
-                $len = strlen($caracteres);
-
-                for ($n = 1; $n <= 5; $n++) {
-                    $rand = mt_rand(1, $len);
-                    $retorno .= $caracteres[$rand - 1];
-                }
-
-                return $retorno;
+                redirect('/', ['page' => 'info']);
             }
         ?>
             <div class="form-container">
@@ -364,7 +341,6 @@ include_once(documentroot() . '/controls/functions.php');
             $txtUsuario = '';
             $txtSenha = '';
             if (requestPOST()) {
-                include_once(dirname(__FILE__, 2) . '/classes/vendor/autoload.php');
                 include_once(documentroot() . '/core/config.php');
 
                 $txtNomeSite = CleanPOST('txtNomeSite');
@@ -408,26 +384,12 @@ include_once(documentroot() . '/controls/functions.php');
                     ->add('dataalterado')->prepared(date('Y-m-d H:i:s'))
                     ->insert();
                 $db4->close();
-                
-                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/files/')) {
-                    mkdir(dirname(__FILE__, 2) . '/sites/1/files/', 0755, true);
-                }
 
-                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/plugins/')) {
-                    mkdir(dirname(__FILE__, 2) . '/sites/1/plugins/', 0755, true);
-                }
-
-                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/sitemap/')) {
-                    mkdir(dirname(__FILE__, 2) . '/sites/1/sitemap/', 0755, true);
-                }
-
-                if (!file_exists(dirname(__FILE__, 2) . '/sites/1/themes/')) {
-                    mkdir(dirname(__FILE__, 2) . '/sites/1/themes/', 0755, true);
-                }
-
-                if (!file_exists(dirname(__FILE__, 2) . '/logs/')) {
-                    mkdir(dirname(__FILE__, 2) . '/logs/', 0755, true);
-                }
+                criarPasta(documentroot() . '/sites/1/files/');
+                criarPasta(documentroot() . '/sites/1/plugins/');
+                criarPasta(documentroot() . '/sites/1/sitemap/');
+                criarPasta(documentroot() . '/sites/1/themes/');
+                criarPasta(documentroot() . '/logs/');
 
                 redirect('/', ['page' => 'finish']);
             }
@@ -454,7 +416,7 @@ include_once(documentroot() . '/controls/functions.php');
             </div>
         <?php
         } elseif ($page == 'finish') {
-            unlink(dirname(__FILE__) . '/install.php');
+            excluirArquivo(dirname(__FILE__) . '/install.php');
         ?>
             <div class="container">
                 <h1>MiConteudo - Instalação Finalizada</h1><br>
