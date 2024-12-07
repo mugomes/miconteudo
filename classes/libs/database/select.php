@@ -85,7 +85,7 @@ class select extends database
                 }
             }
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         }
     }
 

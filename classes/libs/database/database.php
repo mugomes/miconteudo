@@ -43,7 +43,7 @@ class database
                 throw new \Exception(mysqli_connect_error());
             }
         } catch (\mysqli_sql_exception | \Exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         }
     }
 
@@ -190,12 +190,16 @@ class database
         }
     }
 
-    protected function log(string $message)
+    protected function log(mixed $ex)
     {
         if ($this->sSandbox) {
-            echo $message;
+            echo $ex->getMessage();
         } else {
-            file_put_contents(dirname(__FILE__, 4) . '/logs/midb_log', $message, FILE_APPEND);
+            if (!file_exists(dirname(__FILE__, 4) . '/logs/')) {
+                mkdir(dirname(__FILE__, 4) . '/logs/', 0755, true);
+            }
+
+            file_put_contents(dirname(__FILE__, 4) . '/logs/midb_log', $ex->__toString(), FILE_APPEND);
         }
     }
 

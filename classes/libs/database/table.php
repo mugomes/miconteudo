@@ -143,7 +143,7 @@ class table extends database
             $this->sFechaResult = false;
             $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         }
     }
 
@@ -170,7 +170,7 @@ class table extends database
             $this->sFechaResult = false;
             $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         }
     }
 }
