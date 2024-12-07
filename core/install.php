@@ -173,7 +173,7 @@ include_once(documentroot() . '/controls/functions.php');
                 ];
 
                 // DB: Sites
-                $db1 = new table($dbBlogs1, true);
+                $db1 = new table($dbBlogs1);
                 $db1->table('sites')
                     ->int()->autoIncrement()->primaryKey()->add('id')
                     ->longText()->add('link');

@@ -43,7 +43,8 @@ class database
                 throw new \Exception(mysqli_connect_error());
             }
         } catch (\mysqli_sql_exception | \Exception $ex) {
-            $this->log($ex);
+            echo 'Não foi possível realizar a conexão com o banco de dados!';
+            $this->log($ex->__toString());
         }
     }
 
@@ -190,16 +191,12 @@ class database
         }
     }
 
-    protected function log(mixed $ex)
+    protected function log(string $message)
     {
         if ($this->sSandbox) {
-            echo $ex->getMessage();
+            echo $message;
         } else {
-            if (!file_exists(dirname(__FILE__, 4) . '/logs/')) {
-                mkdir(dirname(__FILE__, 4) . '/logs/', 0755, true);
-            }
-
-            file_put_contents(dirname(__FILE__, 4) . '/logs/midb_log', $ex->__toString(), FILE_APPEND);
+            file_put_contents(dirname(__FILE__, 4) . '/logs/midb_log', $message, FILE_APPEND);
         }
     }
 

@@ -37,7 +37,7 @@ class delete extends database
 
             $this->sFechaResult = false;
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex);
+            $this->log($ex->__toString());
         }
     }
 }
