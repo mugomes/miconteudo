@@ -11,13 +11,12 @@ namespace MiConteudo\database;
 class table extends database
 {
     private array $sCreateColumns = [];
-    private array $sAlterColumns = [];
-    private array $sDropColumns = [];
 
     private bool $ctInt = false;
     private bool $ctLongText = false;
     private bool $ctNull = false;
     private bool $ctAutoIncrement = false;
+    private bool $ctPrimaryKey = false;
     private string $ctTamanho = '45';
     private string $ciTamanho = '11';
     private string $ctDefaultValue = '';
@@ -26,52 +25,74 @@ class table extends database
     private function clean()
     {
         $this->ctInt = false;
+        $this->ctLongText = false;
         $this->ctNull = false;
         $this->ctAutoIncrement = false;
+        $this->ctPrimaryKey = false;
         $this->ctTamanho = '45';
         $this->ciTamanho = '11';
         $this->ctDefaultValue = '';
         $this->ctAfter = '';
     }
 
+    private function cleanAll() {
+        $this->clean();
+        $this->sCreateColumns = [];
+        $this->sTabelas = [];
+    }
+
     public function int()
     {
         $this->ctInt = true;
+        return $this;
     }
 
     public function longText()
     {
         $this->ctLongText = true;
+        return $this;
     }
 
     public function null()
     {
         $this->ctNull = true;
+        return $this;
     }
 
     public function autoIncrement()
     {
         $this->ctAutoIncrement = true;
+        return $this;
+    }
+
+    public function primaryKey()
+    {
+        $this->ctPrimaryKey = true;
+        return $this;
     }
 
     public function varcharTamanho(int $value = 45)
     {
         $this->ctTamanho = $value;
+        return $this;
     }
 
     public function intTamanho(int $value = 11)
     {
         $this->ciTamanho = $value;
+        return $this;
     }
 
     public function defaultValue(string $value)
     {
         $this->ctDefaultValue = $value;
+        return $this;
     }
 
     public function after(string $value)
     {
         $this->ctAfter = $value;
+        return $this;
     }
 
     public function add(string $nome)
@@ -85,11 +106,15 @@ class table extends database
         if (empty($this->ctDefaultValue)) {
             $sql .= ($this->ctNull) ? ' DEFAULT NULL' : ' NOT NULL';
         } else {
-            $sql .= ' DEFAULT ' . $this->ctDefaultValue . ' NULL';
+            $sql .= ' DEFAULT ' . $this->ctDefaultValue . ' NOT NULL';
         }
 
         if ($this->ctAutoIncrement) {
             $sql .= ' AUTO_INCREMENT';
+        }
+
+        if ($this->ctPrimaryKey) {
+            $sql .= ' PRIMARY KEY';
         }
 
         if (!empty($this->ctAfter)) {
@@ -97,6 +122,7 @@ class table extends database
         }
 
         $this->sCreateColumns[] = $sql;
+        $this->clean();
         return $this;
     }
 
@@ -113,8 +139,9 @@ class table extends database
             $txt = sprintf('CREATE TABLE IF NOT EXISTS %s (%s) ENGINE=MyISAM DEFAULT CHARSET=%s COLLATE=%s_general_ci;', $this->getTable(), $colunas, $this->sCharset, $this->sCharset);
 
             mysqli_query($this->sConecta, $txt);
-
+            
             $this->sFechaResult = false;
+            $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
             $this->log($ex->__toString());
         }
@@ -141,15 +168,7 @@ class table extends database
             mysqli_query($this->sConecta, $txt);
 
             $this->sFechaResult = false;
-        } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
-        }
-    }
-
-    public function primaryKey(string $name)
-    {
-        try {
-            mysqli_query($this->sConecta, 'ALTER TABLE ' . $this->getTable() . ' ADD PRIMARY KEY (' . $name . ');');
+            $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
             $this->log($ex->__toString());
         }
