@@ -5,14 +5,14 @@
 // Mestre da Info
 // Site: https://www.mestredainfo.com.br
 
-error_reporting(E_ALL);
-
-/* Habilita a exibição de erros */
-ini_set("display_errors", 1);
+if (!defined('miconteudo')) {
+    exit;
+}
 
 use MiConteudo\database\insert;
+use MiConteudo\database\table;
 
-include_once(dirname(__FILE__, 2) . '/controls/functions.php');
+include_once(documentroot() . '/controls/functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -164,45 +164,159 @@ include_once(dirname(__FILE__, 2) . '/controls/functions.php');
         $page = CleanGET('page', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ($page == 'database') {
             if (requestPOST()) {
-                $sServidor = CleanPOST('txtServidor');
-                $sUsuario = CleanPOST('txtUsuario');
-                $sSenha = CleanPOST('txtSenha');
-                $sDB = CleanPOST('txtDB');
-                $sPrefixo = CleanPOST('txtPrefixo');
+                $dbBlogs1 = [
+                    'server' => CleanPOST('txtServidor'),
+                    'username' => CleanPOST('txtUsuario'),
+                    'password' =>  CleanPOST('txtSenha'),
+                    'database' => CleanPOST('txtDB'),
+                    'prefix' => CleanPOST('txtPrefixo') . '_'
+                ];
 
-                try {
-                    $sSQL = trim(file_get_contents(dirname(__FILE__) . '/modeldb.sql'));
-                    $sSQL = str_replace('{miprefixo}', $sPrefixo, $sSQL);
+                // DB: Sites
+                $db1 = new table($dbBlogs1);
+                $db1->table('sites')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->longText()->add('link');
+                $db1->create();
+                        
+                // DB: Categorias
+                $db1->table('categorias')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->add('titulo')
+                    ->longText()->null()->add('palavraschave')
+                    ->longText()->null()->add('descricaocurta')
+                    ->longText()->null()->add('resumo')
+                    ->longText()->null()->add('imagens')
+                    ->int()->add('rascunho')
+                    ->longText()->add('link')
+                    ->int()->add('idcategoria')
+                    ->int()->add('ordem')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->varcharTamanho(19)->null()->add('dataalterado')
+                    ->create();
 
-                    $conecta = mysqli_connect($sServidor, $sUsuario, $sSenha, $sDB);
-                    if (mysqli_connect_errno()) {
-                        echo 'Não foi possível se conectar com o banco de dados, verifique se está digitando corretamente!';
-                    }
-                    mysqli_set_charset($conecta, 'utf8mb4');
+                // DB: Files
+                $db1->table('files')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->add('nome')
+                    ->longText()->add('link')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->create();
 
-                    if (mysqli_multi_query($conecta, $sSQL)) {
-                        $modelConfig = file_get_contents(dirname(__FILE__) . '/modelconfig.php');
-                        $modelConfig = str_replace('{miservidor}', $sServidor, $modelConfig);
-                        $modelConfig = str_replace('{miusuario}', $sUsuario, $modelConfig);
-                        $modelConfig = str_replace('{misenha}', $sSenha, $modelConfig);
-                        $modelConfig = str_replace('{midatabase}', $sDB, $modelConfig);
-                        $modelConfig = str_replace('{miprefixo}', $sPrefixo, $modelConfig);
+                // DB: Menu Topo
+                $db1->table('menutopo')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->add('nome')
+                    ->longText()->add('link')
+                    ->int()->defaultValue(2)->add('ativarnovajanela')
+                    ->int()->defaultValue(2)->add('desativarindexacao')
+                    ->int()->defaultValue(0)->add('idmenu')
+                    ->int()->defaultValue(0)->add('ordem')
+                    ->longText()->null()->add('classe')
+                    ->longText()->null()->add('estilo')
+                    ->create();
 
-                        file_put_contents(dirname(__FILE__) . '/config.php', $modelConfig);
-                        unlink(dirname(__FILE__) . '/modelconfig.php');
-                        unlink(dirname(__FILE__) . '/modeldb.sql');
-                        $redirect = true;
-                    } else {
-                        throw new Exception('Não foi possível criar as tabelas!');
-                    }
-                    mysqli_close($conecta);
-                } catch (mysqli_sql_exception | Exception $ex) {
-                    echo $ex->getMessage();
-                }
+                // DB: Options
+                $db1->table('options')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->add('titulo')
+                    ->longText()->null()->add('palavraschave')
+                    ->longText()->null()->add('descricaocurta')
+                    ->longText()->null()->add('imagens')
+                    ->longText()->null()->add('estatisticas')
+                    ->longText()->null()->add('outrasmetatags1')
+                    ->longText()->null()->add('outrasmetatags2')
+                    ->longText()->null()->add('configemail')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->varcharTamanho(19)->null()->add('dataalterado')
+                    ->create();
+
+                // DB: Pages
+                $db1->table('pages')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->add('titulo')
+                    ->longText()->null()->add('palavraschave')
+                    ->longText()->null()->add('descricaocurta')
+                    ->longText()->null()->add('projeto')
+                    ->longText()->null()->add('descricao')
+                    ->longText()->null()->add('estilos')
+                    ->longText()->null()->add('imagens')
+                    ->longText()->null()->add('outrasmetatags1')
+                    ->longText()->null()->add('outrasmetatags2')
+                    ->longText()->add('link')
+                    ->int()->defaultValue(2)->add('rascunho')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->varcharTamanho(19)->null()->add('dataalterado')
+                    ->create();
+
+                // DB: Posts
+                $db1->table('posts')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->int()->add('idautor')
+                    ->int()->add('idcategoria')
+                    ->longText()->add('titulo')
+                    ->longText()->null()->add('palavraschave')
+                    ->longText()->null()->add('descricaocurta')
+                    ->longText()->null()->add('resumo')
+                    ->longText()->null()->add('projeto')
+                    ->longText()->null()->add('descricao')
+                    ->longText()->null()->add('estilos')
+                    ->longText()->null()->add('imagens')
+                    ->longText()->null()->add('outrasmetatags1')
+                    ->longText()->null()->add('outrasmetatags2')
+                    ->longText()->add('link')
+                    ->int()->defaultValue(2)->add('rascunho')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->varcharTamanho(19)->null()->add('dataalterado')
+                    ->create();
+
+                // DB: Rodapé
+                $db1->table('rodape')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->longText()->null()->add('projeto')
+                    ->longText()->null()->add('descricao')
+                    ->longText()->null()->add('estilos')
+                    ->varcharTamanho(19)->add('dataalterado')
+                    ->create();
+
+                $db1->table('users')
+                    ->int()->autoIncrement()->primaryKey()->add('id')
+                    ->int()->add('idsite')
+                    ->null()->add('idtemp')
+                    ->longText()->null()->add('idtoken1')
+                    ->longText()->null()->add('idtoken2')
+                    ->longText()->add('nome')
+                    ->longText()->add('email')
+                    ->longText()->add('usuario')
+                    ->longText()->add('senha')
+                    ->longText()->add('permissao')
+                    ->varcharTamanho(19)->add('datapublicado')
+                    ->varcharTamanho(19)->null()->add('dataalterado')
+                    ->create();
+
+                $db1->close();
+
+                $modelConfig = file_get_contents(dirname(__FILE__) . '/modelconfig.php');
+                $modelConfig = str_replace('{miservidor}', $dbBlogs1['server'], $modelConfig);
+                $modelConfig = str_replace('{miusuario}', $dbBlogs1['username'], $modelConfig);
+                $modelConfig = str_replace('{misenha}', $dbBlogs1['password'], $modelConfig);
+                $modelConfig = str_replace('{midatabase}', $dbBlogs1['database'], $modelConfig);
+                $modelConfig = str_replace('{miprefixo}', $dbBlogs1['prefix'], $modelConfig);
+
+                file_put_contents(dirname(__FILE__) . '/config.php', $modelConfig);
+                unlink(dirname(__FILE__) . '/modelconfig.php');
+                $redirect = true;
 
                 if (isset($redirect)) {
                     if ($redirect) {
-                        
+
                         redirect('/', ['page' => 'info']);
                     }
                 }
@@ -252,7 +366,7 @@ include_once(dirname(__FILE__, 2) . '/controls/functions.php');
             if (requestPOST()) {
                 include_once(dirname(__FILE__, 2) . '/classes/vendor/autoload.php');
                 include_once(documentroot() . '/core/config.php');
-                               
+
                 $txtNomeSite = CleanPOST('txtNomeSite');
                 $txtUsuario = CleanPOST('txtUsuario');
                 $txtSenha = password_hash(CleanPOST('txtSenha'), PASSWORD_DEFAULT);
