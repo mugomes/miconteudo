@@ -24,9 +24,4 @@ define('miconteudo', true);
 session_name('3rh23fr38dh23nd237424');
 session_start();
 
-if (file_exists(dirname(__FILE__) . '/core/install.php')) {
-    include_once(dirname(__FILE__) . '/core/install.php');
-    exit;
-}
-
 include_once(dirname(__FILE__) . '/controls/app.php');
